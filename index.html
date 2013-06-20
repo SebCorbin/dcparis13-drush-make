@@ -1,0 +1,469 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+
+  <title>Drush Make Driven Development</title>
+
+  <meta name="description" content="Presentation donnée pendant le DrupalCamp Paris 2013">
+  <meta name="author" content="SebCorbin">
+
+  <meta name="apple-mobile-web-app-capable" content="yes"/>
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent"/>
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+
+  <link rel="stylesheet" href="css/reveal.min.css">
+  <link rel="stylesheet" href="css/theme/sky.css" id="theme">
+
+  <!-- For syntax highlighting -->
+  <link rel="stylesheet" href="lib/css/zenburn.css">
+
+  <!-- If the query includes 'print-pdf', use the PDF print sheet -->
+  <script>
+    document.write('<link rel="stylesheet" href="css/print/' + ( window.location.search.match(/print-pdf/gi) ? 'pdf' : 'paper' ) + '.css" type="text/css" media="print">');
+  </script>
+
+  <!--[if lt IE 9]>
+  <script src="lib/js/html5shiv.js"></script>
+  <![endif]-->
+  <style>
+    .reveal .slides {
+      font-family: Helvetica, Arial, sans-serif;
+      letter-spacing: -2px;
+    }
+    .reveal h1, .reveal h2, .reveal h3, .reveal h4, .reveal h5, .reveal h6 {
+      text-transform: none;
+      letter-spacing: -3.4px;
+    }
+  </style>
+</head>
+
+<body>
+
+<div class="reveal">
+
+<!-- Any section element inside of this container is displayed as a slide -->
+<div class="slides theme-font-helvetica">
+<section>
+  <h1>Drush Make Driven Development</h1>
+</section>
+<section>
+  <h2>Qui suis-je ?</h2>
+
+  <div>
+    <br>
+  </div>
+  <div>Sébastien Corbin</div>
+  <div>@<a href="https://twitter.com/SebCorbin">SebCorbin</a>
+  </div>
+  <div>
+    <br>
+  </div>
+  <div>Développeur chez
+    <a href="http://www.makina-corpus.com/">Makina Corpus</a>
+  </div>
+  <div>
+    <br>
+  </div>
+  <div>Drupal depuis 2009</div>
+  <div>
+    <img src="https://s3.amazonaws.com/media-p.slid.es/uploads/sebcorbin/images/32854/Logo_slogan_90dpi.png">
+    <br>
+  </div>
+</section>
+<section>
+  <h2>
+    <span>Petit historique de la gestion de code sous Drupal</span>
+  </h2>
+
+  <div>
+    <ol>
+      <li class="fragment" data-fragment-index="0">En premier le FTP, pour les vieux des années 80<br>
+        <br>
+      </li>
+      <li class="fragment" data-fragment-index="1">Après y'a eu Git, pour éviter de perdre ses fichiers durant le transfert, mais c'est so 2005<br>
+        <br>
+      </li>
+      <li class="fragment" data-fragment-index="2">Ensuite y'a eu Features, parce que la conf en BDD: pas top, mais ça c'est encore so 2009</li>
+    </ol>
+  </div>
+</section>
+<section>
+  <h1>Le présent :<br>Drush Make</h1>
+</section>
+<section>
+  <h2>Au programme</h2>
+
+  <div>
+    <br>
+  </div>
+  <ol>
+    <li>Quelques rappels (Drush et Make, Features, profils, Git, Migrate)<br>
+      <br>
+    </li>
+    <li>Bonnes pratiques et bénéfices<br>
+      <br>
+    </li>
+    <li>Retour d'expérience</li>
+  </ol>
+</section>
+<section>
+  <section>
+    <h1>Quelques rappels</h1>
+  </section>
+  <section>
+    <h2>Drush &amp; Drush Make</h2>
+    <br>
+    <br>
+    <blockquote>
+      <div style="text-align: left;">
+        <span style="font-size: 54px; font-style: italic;">"Drush, c'est la vie"</span>
+      </div>
+      <div style="text-align: right;">
+              <span style="font-size: 24px;" color="#666666">~ tout développeur ayant installé drush
+              </span>
+      </div>
+    </blockquote>
+    <p class="absolute-element" style="text-align: left; position: absolute; width: 708px; height: 56px; z-index: 4; left: 118px; top: 413px;">
+      Installation :&nbsp;<a href="https://drupal.org/project/drush">https://drupal.org/project/drush</a>
+    </p>
+
+    <p class="absolute-element" style="text-align: left; position: absolute; width: 708px; height: 56px; z-index: 4; left: 116px; top: 473px;">
+      Documentation :&nbsp;<a href="http://www.drush.org/">http://www.drush.org/
+    </a>
+    </p>
+  </section>
+  <section>
+    <h2>Features</h2>
+
+    <p class="absolute-element" style="position: absolute; width: 662px; height: 56px; z-index: 6; left: 151px; top: 177px;">Projet :
+      <a href="https://drupal.org/project/features">https://drupal.org/project/features</a>
+    </p>
+
+    <div class="absolute-element" style="left: 77px; top: 238px; position: absolute; z-index: 4;">
+      <h3 style="text-align: left;">
+        <span>Features 1.0</span>
+        <br>
+      </h3>
+
+      <div style="text-align: left;">
+        <ul>
+          <li>
+            <span>Toujours viable tant que la v2 n'est pas stable</span>
+            <br>
+          </li>
+        </ul>
+      </div>
+      <div style="text-align: left;">
+        <br>
+      </div>
+      <div class="fragment" data-fragment-index="0">
+        <h3 style="text-align: left;">
+          <span>Features 2.0-rc1</span>
+          <br>
+        </h3>
+
+        <div style="text-align: left;">
+          <ul>
+            <li>
+              <span>Meilleure gestion des permissions</span>
+            </li>
+            <li>
+              <span style="font-size: 36px; font-style: normal; font-variant: normal;">Meilleure gestion des instances</span>&nbsp;de champs</span>
+              <br>
+            </li>
+            <li>
+              <span>Rétro-compatible</span>
+              <br>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+
+  </section>
+  <section>
+    <h2>Quelques commandes utiles</h2>
+
+    <pre><code>drush fc # (features-components) liste les providers:components</code></pre>
+    <pre><code>drush fe feature_name provider:component # (features-export) exporte un composant</code></pre>
+    <pre><code class="bash">drush fu feature_name # (features-update) met à jour les composants</code></pre>
+    <pre><code>drush fr feature_name # (features-revert) rétablit la feature</code></pre>
+    <pre><code>drush fra # (features-revert-all) rétablit toutes les features activées</code></pre>
+    <pre><code>drush si profile_name # (site-install) installe le profil</code></pre>
+    <pre><code class="bash">drush make file.make # construit la base de code</code></pre>
+    <pre><code class="bash">drush cc all # prépare le café</code>
+    </pre>
+  </section>
+  <section>
+    <h2>Migrate</h2>
+    <p>On a pas trouvé mieux pour intégrer rapidement du contenu à partir de fichiers XML</p>
+    <pre><code>&lt;?xml version="1.0"?&gt;
+      &lt;nodes&gt;
+        &lt;node id="actualites-page" title="Nos actualités" language="fr"&gt;
+          &lt;fields&gt;
+          &lt;body&gt;
+            Lorem Ipsum Dolor Est Lorem Ipsum Dolor Est Lorem Ipsum Dolor Est Ipsum Dolor Est Lorem Ipsum Dolor Est Lorem Ipsum Dolor Est Lorem Dolor Est Lorem Ipsum Dolor Est Lorem Ipsum Dolor Est
+          &lt;/body&gt;
+          &lt;field_image&gt;**GENERATE**&lt;/field_image&gt;
+          &lt;field_date&gt;now -10 days&lt;/field_date&gt;
+          &lt;/fields&gt;
+        &lt;/node&gt;
+      &lt;/nodes&gt;</code></pre>
+  </section>
+  <section>
+    <h2>Migrate</h2>
+
+    <div style="text-align: left;">
+      <br>
+    </div>
+    <div style="text-align: center;">Seule contrainte, faire les gestionnaires d'import</div>
+    <div style="text-align: center;">
+      <br>
+    </div>
+    <div style="text-align: center;">Permet une génération / import poussés</div>
+    <div style="text-align: center;">
+      <br>
+    </div>
+    <div style="text-align: center;">Plus parlant que le contenu de devel_generate</div>
+  </section>
+</section>
+<section>
+  <section>
+    <h1 style="font-style: normal; font-variant: normal;">Astuces et Bonnes pratiques</h1>
+  </section>
+  <section>
+    <h2>Drush Make</h2>
+
+    <div style="text-align: left;">
+      <ul>
+        <li>
+          <span>Utile pour avoir la dernière version des projets</span>
+        </li>
+      </ul>
+      <div>
+        <br>
+      </div>
+      <ul>
+        <li>
+          <span>Spécifier les versions des projets que vous voulez patcher</span>
+          <br>
+        </li>
+      </ul>
+      <div>
+        <br>
+      </div>
+      <span>
+      <ul>
+        <li>
+          <span>Penser aux includes pour les modules souvent utilisées</span>
+          <br>
+        </li>
+      </ul>
+      <div>
+        <br>
+      </div>
+      <div>
+        <ul>
+          <li>Les patchs, c'est la vie, mangez-en</li>
+        </ul>
+      </div>
+      </span>
+    </div>
+  </section>
+  <section>
+    <h2>Un module en dev sans traduction ?</h2>
+
+    <div style="text-align: left;">Oubliez :</div>
+    <div style="text-align: left;">
+      <pre><code>projects[nodequeue][version] = 3.x-dev
+libraries[nodequeue_fr][download][type] = "file"
+libraries[nodequeue_fr][download][url] = "http://ftp.drupal.org/files/translations/7.x/nodequeue/nodequeue-7.x-2.0-beta1.fr.po"
+libraries[nodequeue_fr][destination] = "modules/nodequeue"
+libraries[nodequeue_fr][directory_name] = "translations"
+libraries[nodequeue_fr][download][filename] = "fr.po"</code></pre>
+      <div>
+        La traduction sera installée à l'activation du module
+      </div>
+    </div>
+    <div style="text-align: left;">
+    </div>
+
+
+  </section>
+  <section>
+    <h2>Exemple bête de contrib</h2>
+
+    <div>
+      <br>
+    </div>
+    <div style="text-align: left;">
+      <span>CKEditor ajoute des CRLF au lieu de LF à sa config exportée via Features (dû au navigateur)</span>
+    </div>
+    <div style="text-align: left;" class="fragment">
+      <pre><code>drush clone ckeditor </code></pre>
+    </div>
+    <div style="text-align: left;" class="fragment">
+      <span>Fix du code embêtant, puis</span>
+      <br>
+      <pre><code class="bash">git diff &gt; adieu_souci.patch </code></pre>
+      <span>Partage/Mise en ligne de la solution sur drupal.org&nbsp;</span>
+      <a href="https://drupal.org/node/1960268">https://drupal.org/node/1960268</a>
+    </div>
+    <div style="text-align: left;" class="fragment">
+      <br>Et enfin utilisation dans le projet
+      <pre><code> projects[ckeditor][patch][] = "http://drupal.org/files/CRLF-issue.patch"</code></pre>
+    </div>
+
+
+  </section>
+  <section>
+    <h2>Drush et ses plugins</h2>
+
+    <div style="text-align: left;">
+      <ul>
+        <li style="font-size: 32px;">Drush issue queue
+        </li>
+      </ul>
+      <pre><code class="bash"> drush patch 1960268#4 #applique le patch du 4e comment de l'issue
+ drush iq-diff &gt; file.patch #crée un patch formaté avec les infos de l'auteur</code></pre>
+      <p style="font-size: 24px;">Support de git et des branches, indispensable au maintainers de module</p>
+
+      <ul>
+          <li style="font-size: 32px;">Drush issue queue extras</li>
+      </ul>
+    </div>
+    <div style="text-align: left;">
+      <pre><code> drush iq-submit</code></pre>
+      <p>
+        <font style="font-size: 24px;">Poste directement le diff courant (formaté) dans l'issue</font>
+      </p>
+      <ul>
+        <li>
+          <font style="font-size: 32px;">Pensez aux alias drush, dans drushrc.php</font>
+        </li>
+      </ul>
+      <div>
+        <pre><code> $options['shell-aliases']['clone'] = "dl --package-handler=git_drupalorg --select";</code></pre>
+        <p>
+          <font style="font-size: 24px;">Clone un module depuis git.drupal.org avec choix de la version</font>
+        </p>
+      </div>
+    </div>
+
+
+  </section>
+  <section>
+    <h2>Exemple de fichier bash d'install</h2>
+
+    <div>
+
+      <pre><code class="absolute-element" style="position: absolute; width: 901px; height: 906px; z-index: 4; left: -42px; top: -5px;">#!/bin/bash
+if [[ "$#" &gt; 0 &amp;&amp; $1 = "make" ]]
+then
+#execute drush make
+./"`dirname "$0"`/make.sh";
+fi
+. "profile_conf.sh";
+
+#store session informations if site already installed
+SESSIONS="$(mktemp 'sessions_XXXXXXXXXX')"; trap 'rm "${SESSIONS}"' EXIT
+test "`drush st bootstrap --pipe 2&gt;/dev/null`" == "Successful" &amp;&amp; drush sql-dump --tables-list=sessions &gt; "${SESSIONS}"
+
+$drush si "${PROFILE}" --locale="${LOCALE}" --account-mail="${MAIL}" # etc...
+
+#restore sessions if they were saved
+test -f "${SESSIONS}" &amp;&amp; drush sqlc &lt; "${SESSIONS}" &amp;&amp; echo "Sessions restored"
+
+# features
+drush fra -y --force || exit 1
+drush cc all
+
+# migration
+drush mar
+drush mi My_Migrate_Handler
+
+# generation
+drush en devel_generate asset_generate nodequeue_generate -y
+drush gena 100 # assets
+drush gent ville 15 # terms
+drush genc 50 --types=actu,page,faq # content
+drush dis devel_generate nodequeue_generate -y
+
+drush sapi-r # index search api
+      </code></pre>
+    </div>
+    <p class="absolute-element" style="position: absolute; width: 301px; height: 42px; z-index: 6; left: 306px; top: 591px;">
+      <i>Scroller...</i>
+    </p>
+  </section>
+</section>
+<section>
+  <section>
+    <h1>Retour d'XP</h1>
+  </section>
+  <section>
+    <p style="text-align: left;">
+    <ul>
+      <li>L'intégrateur arrivant dans le projet à un site représentatif et qui fonctionne</li>
+      <li>La génération du site permet à un dev d'entrer facilement dans un projet en cours</li>
+      <li>Lors de la mise en prod, chmod -x install.sh et ne fonctionner que sur des hook_update_N()</li>
+      <li>Le recettage est toujours possible (sous réserve de commits clean)</li>
+      <li>Possibilité de coupler ceci en mode intégration continue avec jenkins ou des git-hooks</li>
+    </ul>
+    </p>
+  </section>
+</section>
+</div>
+
+
+</div>
+
+<script src="lib/js/head.min.js"></script>
+<script src="js/reveal.min.js"></script>
+
+<script>
+
+  // Full list of configuration options available here:
+  // https://github.com/hakimel/reveal.js#configuration
+  Reveal.initialize({
+    controls: true,
+    progress: true,
+    history: true,
+    center: true,
+
+    theme: Reveal.getQueryHash().theme, // available themes are in /css/theme
+    transition: Reveal.getQueryHash().transition || 'default', // default/cube/page/concave/zoom/linear/fade/none
+
+    // Optional libraries used to extend on reveal.js
+    dependencies: [
+      { src: 'lib/js/classList.js', condition: function () {
+        return !document.body.classList;
+      } },
+      { src: 'plugin/markdown/marked.js', condition: function () {
+        return !!document.querySelector('[data-markdown]');
+      } },
+      { src: 'plugin/markdown/markdown.js', condition: function () {
+        return !!document.querySelector('[data-markdown]');
+      } },
+      { src: 'plugin/highlight/highlight.js', async: true, callback: function () {
+        hljs.initHighlightingOnLoad();
+      } },
+      { src: 'plugin/zoom-js/zoom.js', async: true, condition: function () {
+        return !!document.body.classList;
+      } },
+      { src: 'plugin/notes/notes.js', async: true, condition: function () {
+        return !!document.body.classList;
+      } }
+      // { src: 'plugin/search/search.js', async: true, condition: function() { return !!document.body.classList; } }
+      // { src: 'plugin/remotes/remotes.js', async: true, condition: function() { return !!document.body.classList; } }
+    ]
+  });
+
+</script>
+
+</body>
+</html>
