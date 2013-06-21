@@ -66,19 +66,15 @@
   <div>
     <br>
   </div>
-  <div>Sébastien Corbin</div>
-  <div>@<a href="https://twitter.com/SebCorbin">SebCorbin</a>
-  </div>
+  <div>Sébastien Corbin (@<a href="https://twitter.com/SebCorbin">SebCorbin</a>)</div>
+  <div>Développeur, Maintainer, Traducteur</div>
+  <div>Drupal depuis 2009</div>
   <div>
     <br>
   </div>
-  <div>Développeur chez
+  <div>Kidnappé chez
     <a href="http://www.makina-corpus.com/">Makina Corpus</a>
   </div>
-  <div>
-    <br>
-  </div>
-  <div>Drupal depuis 2009</div>
   <div>
     <img src="images/logo_makina.png">
     <br>
@@ -88,16 +84,16 @@
   <h2>
     <span>Petit historique de la gestion de code sous Drupal</span>
   </h2>
-
+  <span style="position: absolute;" class="fragment fade-out"><img src="images/teacher.jpg"/></span>
   <div>
     <ol>
-      <li class="fragment" data-fragment-index="0">En premier le FTP, pour les vieux des années 80<br>
+      <li class="fragment">En premier le FTP, pour les vieux des années 80<br>
         <br>
       </li>
-      <li class="fragment" data-fragment-index="1">Après y'a eu Git, pour éviter de perdre ses fichiers durant le transfert, mais c'est so 2005<br>
+      <li class="fragment">Après y'a eu Git, pour éviter de perdre ses fichiers durant le transfert, mais c'est so 2005<br>
         <br>
       </li>
-      <li class="fragment" data-fragment-index="2">Ensuite y'a eu Features, parce que la conf en BDD: pas top, mais ça c'est encore so 2009</li>
+      <li class="fragment">Ensuite y'a eu Features, parce que la conf en BDD: pas top, mais ça c'est encore so 2009</li>
     </ol>
   </div>
 </section>
@@ -137,14 +133,18 @@
               </span>
       </div>
     </blockquote>
-    <p class="absolute-element" style="text-align: left; position: absolute; width: 708px; height: 56px; z-index: 4; left: 118px; top: 413px;">
-      Installation :&nbsp;<a href="https://drupal.org/project/drush">https://drupal.org/project/drush</a>
-    </p>
+    <img src="images/unicorn.png" style="position: absolute; right: 0;">
 
-    <p class="absolute-element" style="text-align: left; position: absolute; width: 708px; height: 56px; z-index: 4; left: 116px; top: 473px;">
-      Documentation :&nbsp;<a href="http://www.drush.org/">http://www.drush.org/
-    </a>
-    </p>
+    <div style="position: absolute;top: 0;left: -3.5em;">
+      <p class="absolute-element" style="text-align: left; position: absolute; width: 708px; height: 56px; z-index: 4; left: 118px; top: 413px;">
+        Installation :&nbsp;<a href="https://drupal.org/project/drush">https://drupal.org/project/drush</a>
+      </p>
+
+      <p class="absolute-element" style="text-align: left; position: absolute; width: 708px; height: 56px; z-index: 4; left: 116px; top: 473px;">
+        Documentation :&nbsp;<a href="http://www.drush.org/">http://www.drush.org/
+      </a>
+      </p>
+    </div>
   </section>
   <section>
     <h2>Features</h2>
@@ -206,8 +206,8 @@
     <pre><code>drush fra # (features-revert-all) rétablit toutes les features activées</code></pre>
     <pre><code>drush si profile_name # (site-install) installe le profil</code></pre>
     <pre><code class="bash">drush make file.make # construit la base de code</code></pre>
-    <pre><code class="bash">drush cc all # prépare le café</code>
-    </pre>
+    <pre><code class="bash">drush cc all # prépare le café</code></pre>
+    <p>Use the force, Luke <img src="images/ponywars.png" style="height: 6em; vertical-align: middle;"></p>
   </section>
   <section>
     <h2>Migrate</h2>
@@ -224,6 +224,7 @@
           &lt;/fields&gt;
         &lt;/node&gt;
       &lt;/nodes&gt;</code></pre>
+    <img src="images/meme.jpg" style="height: 13em;position: absolute;top: 40%;left: 20%;" class="fragment">
   </section>
   <section>
     <h2>Migrate</h2>
@@ -236,6 +237,12 @@
       <br>
     </div>
     <div style="text-align: center;">Permet une génération / import poussés</div>
+    <div style="text-align: center;">
+      <br>
+    </div>
+    <div style="text-align: center;">
+      <span>Support des fields les plus complexes<span style="font-size: .7em"> (... si vous faites les handlers)</spa></span>
+    </div>
     <div style="text-align: center;">
       <br>
     </div>
@@ -267,7 +274,6 @@
       <div>
         <br>
       </div>
-      <span>
       <ul>
         <li>
           <span>Penser aux includes pour les modules souvent utilisées</span>
@@ -282,7 +288,6 @@
           <li>Les patchs, c'est la vie, mangez-en</li>
         </ul>
       </div>
-      </span>
     </div>
   </section>
   <section>
@@ -328,8 +333,9 @@ libraries[nodequeue_fr][download][filename] = "fr.po"</code></pre>
       <br>Et enfin utilisation dans le projet
       <pre><code> projects[ckeditor][patch][] = "http://drupal.org/files/CRLF-issue.patch"</code></pre>
     </div>
-
-
+  </section>
+  <section>
+    <img src="images/pony.gif" style="width:200%">
   </section>
   <section>
     <h2>Drush et ses plugins</h2>
