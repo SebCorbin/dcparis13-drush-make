@@ -418,17 +418,38 @@ drush sapi-r # index search api
   </section>
   <section>
     <p style="text-align: left;">
-    <ul>
-      <li>L'intégrateur arrivant dans le projet à un site représentatif et qui fonctionne</li>
-      <li>La génération du site permet à un dev d'entrer facilement dans un projet en cours</li>
-      <li>Lors de la mise en prod, chmod -x install.sh et ne fonctionner que sur des hook_update_N()</li>
-      <li>Le recettage est toujours possible (sous réserve de commits clean)</li>
-      <li>Possibilité de coupler ceci en mode intégration continue avec jenkins ou des git-hooks</li>
-    </ul>
+      L'intégrateur arrivant dans le projet à un site représentatif et qui fonctionne
     </p>
+    <pre><code>../bin/make.sh</code></pre>
+    <p style="text-align: left;">Un peu de configuration...</p>
+    <pre><code>../bin/install.sh</code></pre>
+    <p>Démo ! (ouais je suis un fou)</p>
+  </section>
+  <section>
+    <p>La génération du site permet à un dev d'entrer facilement dans un projet en cours</p>
+  </section>
+  <section>
+    <p>Lors de la mise en prod
+    <pre><code>chmod -x install.sh</code></pre>
+    puis ne fonctionner que sur des hook_update_N()</p>
+  </section>
+  <section>
+    <p>Le recettage est toujours possible (sous réserve de commits clean)</p>
+  </section>
+  <section>
+    <p>Possibilité de coupler ceci en mode intégration continue avec jenkins ou des git-hooks</p>
+
+    <p>Development -> re-génération automatique du site</p>
+
+    <p>Pré-production -> génération manuelle par le chef de projet</p>
   </section>
 </section>
-<section data-state="end">
+<section>
+  <h2>Contribution</h2>
+  <div><br></div>
+  Les fichiers d'exemple de Migrate, *.make seront bientôt mis en ligne sur le <a href="http://www.makina-corpus.org/">blog de Makina</a>
+</section>
+  <section data-state="end">
   <h1>Merci</h1>
 </section>
 </div>
